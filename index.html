@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI時代の個人不動産業の新しい常識</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #ed8936;
+            --accent-light: #fbd38d;
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" x="50" y="50" fill="white" opacity="0.1"/></svg>');
+            background-size: 50px 50px;
+            animation: grain 8s steps(10) infinite;
+        }
+        
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0) }
+            10% { transform: translate(-5%, -10%) }
+            30% { transform: translate(3%, -15%) }
+            50% { transform: translate(12%, 9%) }
+            70% { transform: translate(9%, 4%) }
+            90% { transform: translate(-1%, 7%) }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 40px;
+        }
+        
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        /* Central Message */
+        .central-message {
+            background: linear-gradient(135deg, var(--accent) 0%, #dd6b20 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: -60px auto 80px;
+            max-width: 900px;
+            box-shadow: 0 20px 60px rgba(237, 137, 54, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+        
+        .central-message::before {
+            content: '"';
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -40px;
+            left: 20px;
+        }
+        
+        .central-message h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 100px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        
+        /* Group Cards */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .group-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border-left: 6px solid;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .group-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .group-card:nth-child(1) { 
+            border-left-color: #3182ce;
+            animation-delay: 0.1s;
+        }
+        .group-card:nth-child(2) { 
+            border-left-color: #38a169;
+            animation-delay: 0.2s;
+        }
+        .group-card:nth-child(3) { 
+            border-left-color: #d69e2e;
+            animation-delay: 0.3s;
+        }
+        .group-card:nth-child(4) { 
+            border-left-color: #e53e3e;
+            animation-delay: 0.4s;
+        }
+        .group-card:nth-child(5) { 
+            border-left-color: #805ad5;
+            animation-delay: 0.5s;
+        }
+        
+        .group-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .group-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .group-items {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .group-items li {
+            padding: 10px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        
+        .group-items li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .group-meaning {
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(237, 137, 54, 0.05) 0%, rgba(237, 137, 54, 0.1) 100%);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 600;
+            border-left: 3px solid var(--accent);
+        }
+        
+        /* Principles */
+        .principles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            list-style: none;
+            margin: 40px 0;
+        }
+        
+        .principle-item {
+            background: var(--card-bg);
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px var(--shadow);
+            position: relative;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .principle-item:nth-child(1) { animation-delay: 0.1s; }
+        .principle-item:nth-child(2) { animation-delay: 0.2s; }
+        .principle-item:nth-child(3) { animation-delay: 0.3s; }
+        .principle-item:nth-child(4) { animation-delay: 0.4s; }
+        .principle-item:nth-child(5) { animation-delay: 0.5s; }
+        .principle-item:nth-child(6) { animation-delay: 0.6s; }
+        .principle-item:nth-child(7) { animation-delay: 0.7s; }
+        
+        .principle-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .principle-number {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .principle-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .principle-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 48px 40px;
+            border-radius: 16px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            position: relative;
+            margin: 60px 0;
+            box-shadow: 0 10px 40px rgba(26, 54, 93, 0.2);
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.2;
+        }
+        
+        .quote-text {
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+        
+        /* Q&A Section */
+        .qa-grid {
+            display: grid;
+            gap: 24px;
+            margin: 40px 0;
+        }
+        
+        .qa-item {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px var(--shadow);
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .qa-item:nth-child(1) { animation-delay: 0.1s; }
+        .qa-item:nth-child(2) { animation-delay: 0.2s; }
+        .qa-item:nth-child(3) { animation-delay: 0.3s; }
+        
+        .qa-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .qa-question {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .qa-question::before {
+            content: 'Q';
+            background: var(--accent);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .qa-answer {
+            color: var(--text);
+            padding-left: 44px;
+            line-height: 1.8;
+        }
+        
+        /* Text Boxes */
+        .text-box {
+            background: var(--card-bg);
+            padding: 36px;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px var(--shadow);
+            border-top: 4px solid var(--accent);
+        }
+        
+        .text-box-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        }
+        
+        .text-box p {
+            margin-bottom: 16px;
+            line-height: 1.9;
+        }
+        
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Usage Notes */
+        .usage-notes {
+            background: linear-gradient(135deg, rgba(56, 161, 105, 0.1) 0%, rgba(56, 161, 105, 0.05) 100%);
+            padding: 32px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .usage-notes ul {
+            list-style: none;
+            display: grid;
+            gap: 16px;
+        }
+        
+        .usage-notes li {
+            padding: 16px 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .usage-notes li:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-text {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px 40px;
+            }
+            
+            .container {
+                padding: 60px 20px;
+            }
+            
+            .central-message {
+                padding: 40px 28px;
+                margin: -40px 20px 60px;
+            }
+            
+            .groups-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .principles-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .group-card,
+            .principle-item,
+            .qa-item,
+            .text-box {
+                padding: 24px;
+            }
+            
+            .quote-box {
+                padding: 32px 24px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Scroll animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .section,
+            .group-card,
+            .principle-item,
+            .qa-item {
+                opacity: 0;
+                animation: fadeInUp 1s ease-out forwards;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-tag"</div>
+            <h1>不動産業は次のスタンダードへ<br></h1>
+            <p class="hero-subtitle">情報は整えられる、判断は人が支える</p>
+        </div>
+    </div>
+  </div>
+  
+    <!-- Central Message -->
+    <div class="central-message">
+        <h2>不動産業は決断を安心して行うための支援</h2>
+    </div>
+    
+    <div class="container">
+        <!-- Groups Section -->
+        <div class="section">
+            <h2 class="section-title">5つの本質</h2>
+            <p class="section-subtitle">これからの個人不動産業を支える核心的な考え方</p>
+            
+            <div class="groups-grid">
+                <div class="group-card">
+                    <span class="group-icon">🎯</span>
+                    <h3 class="group-title">判断を預かる仕事</h3>
+                    <ul class="group-items">
+                        <li>判断を一緒に引き受ける</li>
+                        <li>説明できる判断が大事</li>
+                        <li>人が責任を持つ</li>
+                        <li>最終判断は「人」が支える</li>
+                        <li>決断と責任は専門家</li>
+                    </ul>
+                    <div class="group-meaning">
+                        不動産業の本質は「売る」ことではなく、顧客の人生に関わる重要な判断を共に担い、説明責任を果たすこと
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <span class="group-icon">⏰</span>
+                    <h3 class="group-title">急がせない支援</h3>
+                    <ul class="group-items">
+                        <li>今日は決めなくていい</li>
+                        <li>今やらない方がいい時もある</li>
+                        <li>合意形成に無理をさせない</li>
+                        <li>売らない提案も価値</li>
+                        <li>関係の寿命を重視</li>
+                    </ul>
+                    <div class="group-meaning">
+                        短期的な取引より、顧客が納得できるタイミングと長期的な関係性を優先する姿勢
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <span class="group-icon">⚙️</span>
+                    <h3 class="group-title">判断を支えるための準備</h3>
+                    <ul class="group-items">
+                        <li>情報は事前に整理</li>
+                        <li>技術よりプロセス</li>
+                        <li>相場・事例・法規の高速整理</li>
+                        <li>比較表・選択肢の見える化</li>
+                        <li>整理は道具、決めるのは人 </li>
+                    </ul>
+                    <div class="group-meaning">
+                       技術はあくまで裏方。効率化は目的ではなく、判断を支えるための準備である。
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <span class="group-icon">🤝</span>
+                    <h3 class="group-title">当事者に寄り添う姿勢</h3>
+                    <ul class="group-items">
+                        <li>売る仕事ではない</li>
+                        <li>相手の事情が最優先</li>
+                        <li>事情・感情・背景を聴く</li>
+                        <li>リスクを翻訳して伝える</li>
+                        <li>仲介＝人生判断の伴走</li>
+                    </ul>
+                    <div class="group-meaning">
+                        顧客の事情や感情を理解し、専門知識を翻訳して伝え、人生の伴走者として支援する
+                    </div>
+                </div>
+                
+                <div class="group-card">
+                    <span class="group-icon">⚡</span>
+                    <h3 class="group-title">小さく速く深く</h3>
+                    <ul class="group-items">
+                        <li>一人だから速い</li>
+                        <li>専門特化で深く支援</li>
+                        <li>地域の暗黙知が武器</li>
+                    </ul>
+                    <div class="group-meaning">
+                        組織ではなく個人だからこそ実現できる、スピード・専門性・地域密着の価値
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Principles Section -->
+        <div class="section">
+            <h2 class="section-title">7つの新しい常識</h2>
+            <p class="section-subtitle">実践に活かす具体的な行動指針</p>
+            
+            <ul class="principles-list">
+                <li class="principle-item">
+                    <div class="principle-number">1</div>
+                    <div class="principle-title">整理は道具、決めるのは人 </div>
+                    <div class="principle-desc">技術は裏方、決断は人が担う</div>
+                </li>
+                <li class="principle-item">
+                    <div class="principle-number">2</div>
+                    <div class="principle-title">仲介＝人生判断の伴走</div>
+                    <div class="principle-desc">取引ではなく人生の重要局面を支える</div>
+                </li>
+                <li class="principle-item">
+                    <div class="principle-number">3</div>
+                    <div class="principle-title">売らない提案も価値</div>
+                    <div class="principle-desc">今やらない選択肢も提示する</div>
+                </li>
+                <li class="principle-item">
+                    <div class="principle-number">4</div>
+                    <div class="principle-title">関係の寿命を重視</div>
+                    <div class="principle-desc">短期取引より長期的信頼関係</div>
+                </li>
+                <li class="principle-item">
+                    <div class="principle-number">5</div>
+                    <div class="principle-title">地域の暗黙知が武器</div>
+                    <div class="principle-desc">データに表れない地域情報の価値</div>
+                </li>
+                <li class="principle-item">
+                    <div class="principle-number">6</div>
+                    <div class="principle-title">一人だから速い</div>
+                    <div class="principle-desc">個人事業の機動力</div>
+                </li>
+                <li class="principle-item">
+                    <div class="principle-number">7</div>
+                    <div class="principle-title">専門特化で深く支援</div>
+                    <div class="principle-desc">狭く深い専門性</div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Quote Section -->
+        <div class="quote-box">
+            <p class="quote-text">今日ここで結論を出す必要はありません。
+まずは、何を決めるのかだけ一緒に整えていきましょう。</p>
+        </div>
+        
+        <!-- Q&A Section -->
+        <div class="section">
+            <h2 class="section-title">よくある質問</h2>
+            <p class="section-subtitle">管理組合・顧客の方からいただく疑問にお答えします</p>
+            
+            <div class="qa-grid">
+                <div class="qa-item">
+                    <div class="qa-question">他の管理会社・不動産会社と何が違うの？</div>
+                    <div class="qa-answer">
+                        最新の資料を並べることよりも、
+「今、決めるべきか／決めない方がいいか」 を事情に合わせて整理する点です。
+短期的に“正しい選択”より、後で説明できる判断を大切にしています。
+                    </div>
+                </div>
+                
+                <div class="qa-item">
+                    <div class="qa-question">AIやデータは使っているの？</div>
+                    <div class="qa-answer">
+                        調査や整理には使いますが、
+説明や判断は必ず人が責任を持って行います。  
+技術よりも、決め方のプロセスを大切にしています。
+                    </div>
+                </div>
+                
+                <div class="qa-item">
+                    <div class="qa-question">すぐ結論を出さなくても大丈夫？</div>
+                    <div class="qa-answer">
+                        はい。急がない方が良い場合は、そうお伝えします。
+無理のない判断ができるよう、結論を急がせない姿勢を大切にしています。
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mission Statements -->
+        <div class="section">
+            <h2 class="section-title">当事務所の姿勢</h2>
+            
+            <div class="text-box">
+                <div class="text-box-title">基本の考え方</div>
+                <p>
+                   私は不動産を「売る仕事」ではなく、
+判断を一緒に引き受ける仕事だと考えています。
+相場や制度は事前に整理し、
+今やるべきか、やらないべきかを事情に合わせて正直にお伝えします。
+                </p>
+            </div>
+            
+            <div class="text-box">
+                <div class="text-box-title">大切にしていること</div>
+                <p>
+                   不動産で本当に難しいのは、情報集めではなくどう決めるかです。売る・買う・直す・何もしない――
+どの判断も、生活や資産に長く影響します。
+事情や不安、背景を踏まえ、納得して決められる状態を整えることを大切にしています。
+今すぐ動かない方が良い場合は、そうお伝えします。相場や事例、制度といった情報は事前に整理したうえで、その方の事情や不安、背景を踏まえ、納得して決められる状態をつくることを大切にしています。
+                  
+                  今すぐ動かない方がいい場合は、そうお伝えします。短期的な取引より、長く相談できる関係を重視しています。
+                </p>
+            </div>
+            
+            <div class="text-box">
+                <div class="text-box-title">対面でお伝えしていること</div>
+                <p>
+                    不動産を売る仕事というより
+判断を一緒に引き受ける仕事だと思っています。
+調べ物や比較は事前に整えますが、
+最終的な判断は事情を踏まえて一緒に考えます。
+                </p>
+            </div>
+        </div>
+        
+        <!-- Usage Notes -->
+        <div class="section">
+            <h2 class="section-title">活用のヒント</h2>
+            <div class="usage-notes">
+                <ul>
+                    <li><strong>Q&A は、資料の最後に添えると安心につながります</li>
+                    <li><strong>冒頭の一言は、初回面談や相談の入り口として使えます</li>     
+  　　　　　　　　　  <li><strong>判断に迷う場面では、いつでも「今日は決めない」選択肢を残します</li>        
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <p class="footer-text">整えるのは情報。支えるのは判断。</p>
+    </div>
+</body>
+</html>
